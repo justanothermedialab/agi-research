@@ -11,7 +11,7 @@ image: >-
   https://placehold.it/1920x1080
 optimized_image: >-
   https://placehold.it/1280x720
-category: technology
+category: code
 tags:
   - artificial intelligence
   - content creation

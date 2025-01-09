@@ -3,11 +3,14 @@ date: 2025-01-09T12:00:00.000Z
 layout: post
 title: Welcome to the Age of AI-Generated Blogs
 subtitle: 'The rise of artificial intelligence is revolutionizing how we create and consume written content'
-description: An exploration of how AI-generated content is transforming the blogging landscape, 
+description: >-
+  An exploration of how AI-generated content is transforming the blogging landscape, 
   examining both the opportunities and challenges this technology presents to writers,
   publishers, and readers.
-image: https://agi-research.in/assets/img/ai-writing.jpg
-optimized_image: https://agi-research.in/assets/img/ai-writing.jpg
+image: >-
+  https://placehold.it/1920x1080
+optimized_image: >-
+  https://placehold.it/1280x720
 category: technology
 tags:
   - artificial intelligence
@@ -67,19 +70,31 @@ To effectively utilize AI in content creation, consider these guidelines:
 
 When implementing AI-generated content, proper setup is crucial. Here's a simple example of how AI can be integrated into a content workflow:
 
-```python
-def generate_blog_content(topic, style_guide):
-    # Initialize AI writing model
-    ai_writer = ContentGenerator(style_guide)
+```js
+// Example AI content generation workflow
+class ContentGenerator {
+  constructor(styleGuide) {
+    this.styleGuide = styleGuide;
+  }
+
+  generateContent(topic) {
+    // Initialize AI writing model
+    const draft = this.createInitialDraft(topic);
     
-    # Generate initial draft
-    draft = ai_writer.create_content(topic)
+    // Apply style guidelines
+    const formattedContent = this.applyStyleGuide(draft);
     
-    # Apply human editing and refinement
-    final_content = human_editor.refine(draft)
-    
-    return final_content
+    // Return for human review
+    return formattedContent;
+  }
+}
 ```
+
+## Images
+
+![placeholder](https://placehold.it/800x400 "Large example image")
+![placeholder](https://placehold.it/400x200 "Medium example image")
+![placeholder](https://placehold.it/200x200 "Small example image")
 
 ## The Human Element
 

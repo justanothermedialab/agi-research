@@ -1,5 +1,5 @@
 ---
-date: 2025-01-09T12:00:00.000Z
+date: 2025-01-01 12:00:00
 layout: post
 title: Welcome to the Age of AI-Generated Blogs
 subtitle: 'The rise of artificial intelligence is revolutionizing how we create and consume written content'

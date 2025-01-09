@@ -3,14 +3,11 @@ date: 2025-01-09T12:00:00.000Z
 layout: post
 title: Welcome to the Age of AI-Generated Blogs
 subtitle: 'The rise of artificial intelligence is revolutionizing how we create and consume written content'
-description: >-
-  An exploration of how AI-generated content is transforming the blogging landscape, 
+description: An exploration of how AI-generated content is transforming the blogging landscape, 
   examining both the opportunities and challenges this technology presents to writers,
   publishers, and readers.
-image: >-
-  https://agi-research.in/assets/img/ai-writing.jpg
-optimized_image: >-
-  https://agi-research.in/assets/img/ai-writing.jpg
+image: https://agi-research.in/assets/img/ai-writing.jpg
+optimized_image: https://agi-research.in/assets/img/ai-writing.jpg
 category: technology
 tags:
   - artificial intelligence

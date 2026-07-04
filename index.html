@@ -1,3 +1,98 @@
----
-layout: home
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGI Research — Coming Soon</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --bg:#0c0c0c; --ink:#e8e8e8; --accent:#c9a96e; --muted:#777; }
+  html, body { height:100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg); color: var(--ink);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 2rem; position: relative;
+    -webkit-font-smoothing: antialiased;
+  }
+  .site-frame { position:fixed; inset:0; border:1px solid #2a2a2a; pointer-events:none; z-index:100; }
+
+  .lockup-wrap {
+    --lup-bg:rgba(255,255,255,0.96); --lup-ink:#111;
+    background:var(--lup-bg); padding:0.4rem 0.9rem;
+    border:1px solid rgba(0,0,0,0.08); border-radius:2px;
+    margin-bottom:3rem; display:inline-block;
+  }
+  .lockup { display:inline-flex; align-items:baseline; gap:0.35rem; text-decoration:none; }
+  .lockup .agi { font-family:ui-monospace,Consolas,'Courier New',monospace; font-weight:500; font-size:0.8rem; letter-spacing:1px; color:var(--lup-bg); background:var(--lup-ink); padding:0.22rem 0.45rem 0.18rem; }
+  .lockup .rsr { font-family:Georgia,'Times New Roman',serif; font-size:1.15rem; font-weight:700; color:var(--lup-ink); letter-spacing:0.2px; }
+
+  .mosaic {
+    display:grid; grid-template-columns:repeat(5,32px); gap:6px;
+    justify-content:center; margin-bottom:2.5rem;
+  }
+  .tile {
+    width:32px; height:32px; border:1px solid #2a2a2a; border-radius:2px;
+  }
+  .tile.filled { background:var(--accent); border-color:var(--accent); }
+  .tile.pop { animation: popIn 2s ease-in-out infinite; }
+  .tile.pop:nth-child(1) { animation-delay:0s; }
+  .tile.pop:nth-child(2) { animation-delay:0.4s; }
+  .tile.pop:nth-child(3) { animation-delay:0.8s; }
+  .tile.pop:nth-child(4) { animation-delay:1.2s; }
+  @keyframes popIn { 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.18); background:var(--accent); border-color:var(--accent); } }
+
+  h1 { font-family: Georgia, 'Times New Roman', serif; font-size:clamp(1.6rem,4vw,2.4rem); font-weight:700; color:var(--ink); margin-bottom:0.8rem; letter-spacing:-0.01em; }
+  p { font-size:0.95rem; color:var(--muted); line-height:1.7; max-width:420px; margin-bottom:3rem; }
+
+  .wip-footer { font-family:Consolas, monospace; font-size:0.65rem; color:var(--muted); letter-spacing:0.5px; }
+  .wip-footer a { color:var(--accent); text-decoration:none; }
+  .wip-footer a:hover { text-decoration:underline; }
+
+  @media (max-width:480px) {
+    .mosaic { grid-template-columns:repeat(4,28px); gap:4px; }
+    .tile { width:28px; height:28px; }
+  }
+</style>
+</head>
+<body>
+<div class="site-frame" aria-hidden="true"></div>
+
+<div class="lockup-wrap">
+<a href="#" class="lockup"><span class="agi">AGI</span><span class="rsr">research</span></a>
+</div>
+
+<div class="mosaic">
+  <div class="tile filled"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+  <div class="tile filled"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+  <div class="tile pop"></div>
+  <div class="tile"></div>
+  <div class="tile filled"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+  <div class="tile pop"></div>
+  <div class="tile filled"></div>
+  <div class="tile"></div>
+  <div class="tile pop"></div>
+  <div class="tile"></div>
+  <div class="tile filled"></div>
+  <div class="tile"></div>
+  <div class="tile filled"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+  <div class="tile"></div>
+</div>
+
+<h1>The big picture is taking shape</h1>
+<p>We're assembling coverage across alignment, models, systems, and policy. Every piece brings the full story closer.</p>
+
+<div class="wip-footer">Designed by <a href="https://jamlab.in" target="_blank" rel="noopener">JAM Lab</a></div>
+</body>
+</html>

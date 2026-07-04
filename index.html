@@ -28,18 +28,13 @@
   .lockup .rsr { font-family:Georgia,'Times New Roman',serif; font-size:1.15rem; font-weight:700; color:var(--lup-ink); letter-spacing:0.2px; }
 
   .mosaic {
-    display:grid; grid-template-columns:repeat(3,32px); gap:6px;
+    display:grid; grid-template-columns:repeat(5,32px); gap:6px;
     justify-content:center; margin-bottom:2.5rem;
   }
   .tile {
     width:32px; height:32px; border:1px solid #2a2a2a; border-radius:2px;
   }
-  .tile.filled { background:var(--accent); border-color:var(--accent); }
-  .tile.pop { animation: popIn 2s ease-in-out infinite; }
-  .tile.pop:nth-child(1) { animation-delay:0s; }
-  .tile.pop:nth-child(2) { animation-delay:0.4s; }
-  .tile.pop:nth-child(3) { animation-delay:0.8s; }
-  .tile.pop:nth-child(4) { animation-delay:1.2s; }
+  .tile.on { animation: popIn var(--dur,2s) ease-in-out infinite; }
   @keyframes popIn { 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.18); background:var(--accent); border-color:var(--accent); } }
 
   h1 { font-family: Georgia, 'Times New Roman', serif; font-size:clamp(1.6rem,4vw,2.4rem); font-weight:700; color:var(--ink); margin-bottom:0.8rem; letter-spacing:-0.01em; }
@@ -50,8 +45,14 @@
   .wip-footer a:hover { text-decoration:underline; }
 
   @media (max-width:480px) {
-    .mosaic { grid-template-columns:repeat(4,28px); gap:4px; }
-    .tile { width:28px; height:28px; }
+    .mosaic { grid-template-columns:repeat(5,24px); gap:4px; }
+    .tile { width:24px; height:24px; }
+    p { font-size:0.85rem; }
+    body { padding:1.5rem 1rem; }
+  }
+  @media (max-width:360px) {
+    .mosaic { grid-template-columns:repeat(5,20px); gap:3px; }
+    .tile { width:20px; height:20px; }
   }
 </style>
 </head>
@@ -62,37 +63,75 @@
 <a href="#" class="lockup"><span class="agi">AGI</span><span class="rsr">research</span></a>
 </div>
 
-<div class="mosaic">
-  <div class="tile filled"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-  <div class="tile filled"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-  <div class="tile pop"></div>
-  <div class="tile"></div>
-  <div class="tile filled"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-  <div class="tile pop"></div>
-  <div class="tile filled"></div>
-  <div class="tile"></div>
-  <div class="tile pop"></div>
-  <div class="tile"></div>
-  <div class="tile filled"></div>
-  <div class="tile"></div>
-  <div class="tile filled"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-  <div class="tile"></div>
-</div>
+<div class="mosaic" id="mosaic"></div>
 
 <h1>The big picture is taking shape</h1>
 <p>We're assembling coverage across alignment, models, systems, and policy. Every piece brings the full story closer.</p>
 
 <div class="wip-footer">Designed by <a href="https://jamlab.in" target="_blank" rel="noopener">JAM Lab</a></div>
+
+<script>
+(function(){
+  var grid = document.getElementById('mosaic');
+  var N = 25;
+  var tiles = [];
+  var lit = [];
+  var cooldownEnd = [];
+
+  for (var i = 0; i < N; i++) {
+    var t = document.createElement('div');
+    t.className = 'tile';
+    tiles.push(t);
+    grid.appendChild(t);
+  }
+
+  function pickOne() {
+    var now = Date.now();
+    var pool = [];
+    for (var i = 0; i < N; i++) {
+      if (lit.indexOf(i) === -1 && (!cooldownEnd[i] || cooldownEnd[i] < now)) {
+        pool.push(i);
+      }
+    }
+    return pool.length ? pool[Math.floor(Math.random() * pool.length)] : -1;
+  }
+
+  function light(idx) {
+    if (idx === -1) return;
+    var t = tiles[idx];
+    var dur = 1500 + Math.random() * 3000;
+    var start = -(Math.random() * dur);
+
+    t.className = 'tile on';
+    t.style.setProperty('--dur', dur + 'ms');
+    t.style.animationDelay = start + 'ms';
+
+    lit.push(idx);
+
+    setTimeout(function(){
+      var p = lit.indexOf(idx);
+      if (p !== -1) lit.splice(p, 1);
+      t.className = 'tile';
+      t.style.animationDelay = '';
+      t.style.removeProperty('--dur');
+      cooldownEnd[idx] = Date.now() + 1500 + Math.random() * 2000;
+      var gap = 200 + Math.random() * 1200;
+      setTimeout(function(){
+        var next = pickOne();
+        if (next === -1) {
+          (function retry(){ var n = pickOne(); if (n === -1) setTimeout(retry, 300); else light(n); })();
+        } else {
+          light(next);
+        }
+      }, gap);
+    }, dur);
+  }
+
+  var startCount = 3 + Math.floor(Math.random() * 6);
+  for (var i = 0; i < startCount; i++) {
+    setTimeout(function(){ light(pickOne()); }, Math.random() * 400);
+  }
+})();
+</script>
 </body>
 </html>
